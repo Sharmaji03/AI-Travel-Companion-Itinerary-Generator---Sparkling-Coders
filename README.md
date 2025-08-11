@@ -11,9 +11,8 @@ Team Members:
 - Vishal Pal (https://github.com/Vishalcode-ai)
 - Gerontius Rodrigues (https://github.com/GerontiusRodrigues)
 
-Team Members:               
-- Hritik Sharma (https://github.com/Sharmaji03)          
-- Pavan Shirodkar (https://github.com/Pavanop12)
-- Avdhut Dessai (https://github.com/avd-ctrl)
-- Vishal Pal (https://github.com/Vishalcode-ai)
-- Gerontius Rodrigues (https://github.com/GerontiusRodrigues)
+Tech Stack:               
+- Frontend (React.js, CSS)          
+- Backend (Node.js, Python)
+- Database (MongoDB)
+- APIs & Tools ( Google Maps API / OpenStreetMap, Zomato API / Yelp API, Booking.com API / Hotels API)
