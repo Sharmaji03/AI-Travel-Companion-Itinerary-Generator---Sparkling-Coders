@@ -12,7 +12,7 @@ Team Members:
 
 Tech Stack:
 
--Frontend(React.js, CSS)
--Backend(Node.js, Python)
--Database(MongoDB)
--APIs & Tools(Google Maps API / OpenStreetMap, Zomato API / Yelp API, Booking.com API / Hotels API )
+*Frontend (React.js, CSS)
+*Backend (Node.js, Python)
+*Database (MongoDB)
+*APIs & Tools (Google Maps API / OpenStreetMap, Zomato API / Yelp API, Booking.com API / Hotels API )
