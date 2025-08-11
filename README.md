@@ -1,8 +1,8 @@
 # AI-Travel-Companion-Itinerary-Generator---Sparkling-Coders
 
 
-Team Members
-- Hritik Sharma
+Team Members                GitHub Profiles
+- Hritik Sharma             
 - Pavan Shirodkar
 - Avdhut Dessai
 - Vishal Pal
