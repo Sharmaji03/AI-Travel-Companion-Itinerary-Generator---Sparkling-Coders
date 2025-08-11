@@ -6,4 +6,4 @@ Team Members
 - Pavan Shirodkar
 - Avdhut Dessai (https://github.com/avd-ctrl)
 - Vishal Pal
-- Gerontius Rodrigues
+- Gerontius Rodrigues (https://github.com/GerontiusRodrigues)
