@@ -11,7 +11,7 @@ Team Members:
 - Gerontius Rodrigues (https://github.com/GerontiusRodrigues)
 
 Tech Stack:
-Frontend
-Backend
-Database
-APIs & Tools
+-Frontend(React.js, CSS)
+-Backend(Node.js, Python)
+-Database(MongoDB)
+-APIs & Tools(Google Maps API / OpenStreetMap, Zomato API / Yelp API, Booking.com API / Hotels API )
