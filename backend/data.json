@@ -1,1 +1,59 @@
+1. User Registration
+/* ----------------- CREATE ----------------- */
+app.post('/api/users/register', (req, res) => {
+    const { username, email, password } = req.body;
+
+    // Check if email already exists
+    if (users.find(u => u.email === email)) {
+        return res.status(400).json({ error: "Email already exists" });
+    }
+
+    const newUser = {
+        id: uuidv4(),
+        username,
+        email,
+        password
+    };
+    users.push(newUser);
+
+    res.status(201).json({
+        message: "User registered successfully",
+        user_id: newUser.id
+    });
+});
+
+/* ----------------- READ ----------------- */
+// Get all users
+app.get('/api/users', (req, res) => {
+    res.json(users);
+});
+
+// Get user by ID
+app.get('/api/users/:id', (req, res) => {
+    const user = users.find(u => u.id === req.params.id);
+    if (!user) return res.status(404).json({ error: "User not found" });
+    res.json(user);
+});
+
+/* ----------------- UPDATE ----------------- */
+app.put('/api/users/:id', (req, res) => {
+    const user = users.find(u => u.id === req.params.id);
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    const { username, email, password } = req.body;
+    if (username) user.username = username;
+    if (email) user.email = email;
+    if (password) user.password = password;
+
+    res.json({ message: "User updated successfully", user });
+});
+
+/* ----------------- DELETE ----------------- */
+app.delete('/api/users/:id', (req, res) => {
+    const index = users.findIndex(u => u.id === req.params.id);
+    if (index === -1) return res.status(404).json({ error: "User not found" });
+
+    users.splice(index, 1);
+    res.json({ message: "User deleted successfully" });
+});
 
