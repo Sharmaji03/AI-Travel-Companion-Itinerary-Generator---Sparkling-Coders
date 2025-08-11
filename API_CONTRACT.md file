@@ -1,1 +1,37 @@
+API Endpoints Documentation:
+
+1. User Registration
+Feature: Create a new user account
+HTTP Method: POST
+Endpoint Path: /api/users/register
+Description: Registers a new user in the system.
+Request Body:{
+  "username": "Hello",
+  "email": "hello@example.com",
+  "password": "Password123"
+}
+Success Response:{
+  "message": "User registered successfully",
+  "user_id": "abc123"
+}
+Error Responses:{
+  "error": "Email already exists"
+}
+
+2. User Login
+Feature: Authenticate a user
+HTTP Method: POST
+Endpoint Path: /api/users/login
+Description: Logs in an existing user and returns an authentication token.
+Request Body:{
+  "email": "hello@example.com",
+  "password": "Password123"
+}
+Success Response:{
+  "username": "Hello",
+  "user_id": "abc123"
+}
+Error Responses:{
+  "error": "Invalid email or password"
+}
 
