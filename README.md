@@ -11,6 +11,7 @@ Team Members:
 - Gerontius Rodrigues (https://github.com/GerontiusRodrigues)
 
 Tech Stack:
+
 -Frontend(React.js, CSS)
 -Backend(Node.js, Python)
 -Database(MongoDB)
