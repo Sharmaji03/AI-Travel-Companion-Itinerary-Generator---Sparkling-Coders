@@ -57,7 +57,7 @@ app.delete('/api/users/:id', (req, res) => {
     res.json({ message: "User deleted successfully" });
 });
 
-2. User Login
+2. User Login Authenticate
 // POST /api/users/login
 app.post("/api/users/login", async (req, res) => {
   const { email, password } = req.body;
