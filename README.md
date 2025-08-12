@@ -19,23 +19,24 @@ Tech Stack:
 
 Make sure you have Node.js installed (v16+ recommended).
 
--Running the Backend Locally:
-1)Open your Command Prompt
-2)clone the GitHub repository- clone git (git URL)
-3)Check the path and download all the files from GitHub to the backend folder
-4)In the terminal, write "cd backend"- it will access the backend folder from the repository
-5)In the terminal, write "npm install"- Install Dependencies
-6)In the terminal, write "npm start"- Start the Server
-7)If successful, you should see something like:
+
+Running the Backend Locally:              
+- Open your Command Prompt       
+- clone the GitHub repository- clone git (git URL)
+- Check the path and download all the files from GitHub to the backend folder
+- In the terminal, write "cd backend"- it will access the backend folder from the repository
+- In the terminal, write "npm install"- Install Dependencies
+- In the terminal, write "npm start"- Start the Server
+- If successful, you should see something like:
   Server running on port 3000
   Swagger Docs available at http://localhost:3000/api-docs
-8)Accessing the API & Documentation
+- Accessing the API & Documentation
   API Base URL- http://localhost:3000
   After starting the backend, open your browser and visit: http://localhost:3000/api-docs
 
 
 Technologies Used:               
--Node.js - Backend runtime         
+- Node.js - Backend runtime         
 - Express.js - API framework
 - Swagger - API documentation
 - UUID - Unique ID generation
