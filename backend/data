@@ -194,3 +194,60 @@ app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
 
+4. Get Itinerary Generation by ID
+/* ----------------- CREATE ----------------- */
+app.post('/api/itinerary', (req, res) => {
+    const { trip_id, destination, itinerary } = req.body;
+
+    // Check if trip_id already exists
+    if (trips.find(t => t.trip_id === trip_id)) {
+        return res.status(400).json({ error: "Trip ID already exists" });
+    }
+
+    const newTrip = {
+        trip_id,
+        destination,
+        itinerary
+    };
+    trips.push(newTrip);
+
+    res.status(201).json({
+        message: "Itinerary created successfully",
+        trip_id: newTrip.trip_id
+    });
+});
+
+/* ----------------- READ ----------------- */
+// Get all itineraries
+app.get('/api/itinerary', (req, res) => {
+    res.json(trips);
+});
+
+// Get itinerary by trip_id
+app.get('/api/itinerary/:trip_id', (req, res) => {
+    const trip = trips.find(t => t.trip_id === req.params.trip_id);
+    if (!trip) return res.status(404).json({ error: "Trip not found" });
+    res.json(trip);
+});
+
+/* ----------------- UPDATE ----------------- */
+app.put('/api/itinerary/:trip_id', (req, res) => {
+    const trip = trips.find(t => t.trip_id === req.params.trip_id);
+    if (!trip) return res.status(404).json({ error: "Trip not found" });
+
+    const { destination, itinerary } = req.body;
+    if (destination) trip.destination = destination;
+    if (itinerary) trip.itinerary = itinerary;
+
+    res.json({ message: "Itinerary updated successfully", trip });
+});
+
+/* ----------------- DELETE ----------------- */
+app.delete('/api/itinerary/:trip_id', (req, res) => {
+    const index = trips.findIndex(t => t.trip_id === req.params.trip_id);
+    if (index === -1) return res.status(404).json({ error: "Trip not found" });
+
+    trips.splice(index, 1);
+    res.json({ message: "Itinerary deleted successfully" });
+});
+
