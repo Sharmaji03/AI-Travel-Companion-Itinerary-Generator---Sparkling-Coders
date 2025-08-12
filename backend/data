@@ -317,3 +317,69 @@ app.delete('/api/restaurants/:id', (req, res) => {
     res.json({ message: "Restaurant deleted successfully" });
 });
 
+6. Hotel Suggestions
+/* ----------------- CREATE ----------------- */
+app.post('/api/hotels', (req, res) => {
+    const { name, price_per_night, rating, address, source } = req.body;
+
+    // Prevent duplicate hotel name + address
+    if (hotels.find(h => h.name === name && h.address === address)) {
+        return res.status(400).json({ error: "Hotel already exists" });
+    }
+
+    const newHotel = {
+        id: uuidv4(),
+        name,
+        price_per_night,
+        rating,
+        address,
+        source
+    };
+    hotels.push(newHotel);
+
+    res.status(201).json({
+        message: "Hotel added successfully",
+        hotel_id: newHotel.id
+    });
+});
+
+/* ----------------- READ ----------------- */
+// Get all hotels
+app.get('/api/hotels', (req, res) => {
+    if (hotels.length === 0) {
+        return res.status(404).json({ error: "No Hotels found" });
+    }
+    res.json(hotels);
+});
+
+// Get hotel by ID
+app.get('/api/hotels/:id', (req, res) => {
+    const hotel = hotels.find(h => h.id === req.params.id);
+    if (!hotel) return res.status(404).json({ error: "Hotel not found" });
+    res.json(hotel);
+});
+
+/* ----------------- UPDATE ----------------- */
+app.put('/api/hotels/:id', (req, res) => {
+    const hotel = hotels.find(h => h.id === req.params.id);
+    if (!hotel) return res.status(404).json({ error: "Hotel not found" });
+
+    const { name, price_per_night, rating, address, source } = req.body;
+    if (name) hotel.name = name;
+    if (price_per_night) hotel.price_per_night = price_per_night;
+    if (rating) hotel.rating = rating;
+    if (address) hotel.address = address;
+    if (source) hotel.source = source;
+
+    res.json({ message: "Hotel updated successfully", hotel });
+});
+
+/* ----------------- DELETE ----------------- */
+app.delete('/api/hotels/:id', (req, res) => {
+    const index = hotels.findIndex(h => h.id === req.params.id);
+    if (index === -1) return res.status(404).json({ error: "Hotel not found" });
+
+    hotels.splice(index, 1);
+    res.json({ message: "Hotel deleted successfully" });
+});
+
