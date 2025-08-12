@@ -33,8 +33,10 @@ Make sure you have Node.js installed (v16+ recommended).
   API Base URL- http://localhost:3000
   After starting the backend, open your browser and visit: http://localhost:3000/api-docs
 
-Technologies Used
--Node.js - Backend runtime
--Express.js - API framework
--Swagger - API documentation
--UUID - Unique ID generation
+
+Technologies Used:               
+-Node.js - Backend runtime         
+- Express.js - API framework
+- Swagger - API documentation
+- UUID - Unique ID generation
+
