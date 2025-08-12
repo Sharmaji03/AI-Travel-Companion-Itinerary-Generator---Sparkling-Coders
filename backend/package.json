@@ -1,0 +1,22 @@
+{
+  "name": "ai-travel-companion-backend",
+  "version": "1.0.0",
+  "description": "Backend for AI Travel Companion Itinerary Generator",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.6",
+    "debug": "^4.3.4",
+    "express": "^4.21.2",
+    "http-errors": "^2.0.0",
+    "jade": "^1.11.0",
+    "morgan": "^1.10.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.3",
+    "uuid": "^9.0.1"
+  }
+}
