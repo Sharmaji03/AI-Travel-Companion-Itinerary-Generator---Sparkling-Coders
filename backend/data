@@ -80,3 +80,117 @@ app.post("/api/users/login", async (req, res) => {
     user_id: user.user_id
   });
 });
+
+3. Itinerary Generation
+// server.js
+const express = require("express");
+const bodyParser = require("body-parser");
+const { v4: uuidv4 } = require("uuid"); // For unique trip IDs
+
+const app = express();
+app.use(bodyParser.json());
+
+// Temporary "database"
+let trips = [];
+
+/* ----------------- Helper: Validate date format----------------- */
+function isValidDate(date) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(date);
+}
+
+/* -----------------CREATE (POST) - Generate a new itinerary----------------- */
+app.post("/api/itinerary/generate", (req, res) => {
+  const { start_date, end_date, destination, budget, food_choice, transport_mode } = req.body;
+
+  // Validate inputs
+  if (!isValidDate(start_date) || !isValidDate(end_date) || !destination) {
+    return res.status(400).json({ error: "Invalid location or date format" });
+  }
+
+  const trip_id = uuidv4();
+
+  // Simple generated itinerary example
+  const itinerary = [
+    {
+      date: start_date,
+      activities: [
+        {
+          type: "sightseeing",
+          name: `Explore ${destination}`,
+          details: "Visit main attractions",
+          price: 100,
+          location: "28.6139, 77.2090"
+        }
+      ]
+    }
+  ];
+
+  const trip = {
+    trip_id,
+    start_date,
+    end_date,
+    destination,
+    budget,
+    food_choice,
+    transport_mode,
+    itinerary
+  };
+
+  trips.push(trip);
+
+  res.status(201).json({
+    message: "Trip created successfully",
+    trip_id,
+    itinerary
+  });
+});
+
+/* -----------------READ (GET) - Get all trips----------------- */
+app.get("/api/itinerary", (req, res) => {
+  res.json(trips);
+});
+
+/* -----------------READ (GET) - Get a single trip by ID----------------- */
+app.get("/api/itinerary/:id", (req, res) => {
+  const trip = trips.find(t => t.trip_id === req.params.id);
+  if (!trip) return res.status(404).json({ error: "Trip not found" });
+  res.json(trip);
+});
+
+/* -----------------UPDATE (PUT) - Update a trip----------------- */
+app.put("/api/itinerary/:id", (req, res) => {
+  const trip = trips.find(t => t.trip_id === req.params.id);
+  if (!trip) return res.status(404).json({ error: "Trip not found" });
+
+  const { start_date, end_date, destination, budget, food_choice, transport_mode, itinerary } = req.body;
+
+  // Update only provided fields
+  if (start_date && !isValidDate(start_date)) return res.status(400).json({ error: "Invalid start date format" });
+  if (end_date && !isValidDate(end_date)) return res.status(400).json({ error: "Invalid end date format" });
+
+  if (start_date) trip.start_date = start_date;
+  if (end_date) trip.end_date = end_date;
+  if (destination) trip.destination = destination;
+  if (budget) trip.budget = budget;
+  if (food_choice) trip.food_choice = food_choice;
+  if (transport_mode) trip.transport_mode = transport_mode;
+  if (itinerary) trip.itinerary = itinerary;
+
+  res.json({ message: "Trip updated successfully", trip });
+});
+
+/* -----------------DELETE - Remove a trip----------------- */
+app.delete("/api/itinerary/:id", (req, res) => {
+  const index = trips.findIndex(t => t.trip_id === req.params.id);
+  if (index === -1) return res.status(404).json({ error: "Trip not found" });
+
+  trips.splice(index, 1);
+  res.json({ message: "Trip deleted successfully" });
+});
+
+// Start server
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
+
